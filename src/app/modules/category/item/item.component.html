@@ -1,0 +1,31 @@
+<div>
+  <h2 class="text-center">
+    {{ date }}
+  </h2>
+  <div *ngIf="loading" class="loading">
+    <p>Loading ...</p>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <ul *ngIf="films.length; else noFilms" class="category-list">
+    <li *ngFor="let film of films" class="category-list-item">
+      <a>{{ film.title }}</a>
+      <button class="btn btn-danger" (click)="remove(film)">Remove</button>
+    </li>
+  </ul>
+
+  <ng-template #noFilms *ngIf="!loading">
+    <p class="text-center">Not Have any film</p>
+  </ng-template>
+
+  <button
+      class="btn btn-primary text-center"
+      [routerLink]="'/category'"
+  >
+    <i class="material-icons">
+      category
+    </i>
+    Category
+  </button>
+</div>
